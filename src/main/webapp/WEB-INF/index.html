@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>items</title>
+    <style>
+        DIV.table {
+            display: table;
+        }
+
+        FORM.tr, DIV.tr {
+            display: table-row;
+        }
+
+        SPAN.td {
+            display: table-cell;
+        }
+
+        #made {
+            padding-top: 2%;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                method: "get",
+                url: "/made",
+                dataType: 'json',
+                success: [function (data) {
+                    var value = data.valueCh;
+                    if (value == "on") {
+                        document.getElementById("all").checked = true;
+                    } else {
+                        document.getElementById("all").checked = false;
+                    }
+                }]
+            })
+            $.ajax({
+                method: "GET",
+                url: "/create",
+                dataType: 'json',
+                success: [function (items) {
+                    var items = items.array;
+                    var content = "";
+                    items.forEach(function (item, index, items) {
+                        var created = new Date(item.created);
+                        if ($('#all').prop('checked')) {
+                            if (item.done) {
+                                var done = "<input type=\"checkbox\" name=\"done\" checked onchange=\"submit()\" class=\"form-check-input\" value=\""
+                                    + item.id + " off" + " " + "\"/>";
+                            } else {
+                                var done = "<input type=\"checkbox\" name=\"done\" onchange=\"submit()\" class=\"form-check-input\" value=\""
+                                    + item.id + " on" + " " + "\"/>";
+                            }
+                            content += "<form class=\"tr\"  action=\"/items\" name=\"formIt\" method=\"post\">\n" +
+                                "        <span class=\"td\">" + "<input type=\"text\" name=\"id\" value=\"" + item.id + "\" disabled />"
+                                + "</span>" + "<span class=\"td\">" + "<input type=\"text\" name=\"desc\" value=\"" + item.desc + "\" disabled />"
+                                + "</span>" + "<span class=\"td\">" + "<input type=\"text\" name=\"created\" value=\"" + created + "\" disabled />"
+                                + "</span>" + "<span class=\"td\">" + done + "</span>\n" +
+                                "    </form>";
+
+                        } else if (!item.done) {
+                            content += "<form class=\"tr\"  action=\"/items\" name=\"formIt\" method=\"post\">\n" +
+                                "        <span class=\"td\">" + "<input type=\"text\" name=\"id\" value=\"" + item.id + "\" disabled />"
+                                + "</span>" + "<span class=\"td\">" + "<input type=\"text\" name=\"desc\" value=\"" + item.desc + "\" disabled />"
+                                + "</span>" + "<span class=\"td\">" + "<input type=\"text\" name=\"created\" value=\"" + created + "\" disabled />"
+                                + "</span>" + "<span class=\"td\">" +
+                                "<input type=\"checkbox\" name=\"done\" onchange=\"submit()\" class=\"form-check-input\" value=\"" + item.id + " on"
+                                + " " + "\"/>" + "</span>\n" +
+                                "    </form>";
+                        }
+                    })
+                    $('.table').append(content);
+                    content = "";
+                }]
+            })
+        })
+    </script>
+</head>
+<body>
+<p>
+    <form action="/create" name="create" method="post" class="form-control">
+<p>Введите описание : <input type="text" name="desc" class="input-group-prepend"></p>
+</br>
+<input type="submit" value="create" class="btn btn-primary">
+</form>
+</p>
+</br>
+<p>
+    <form action="/made" name="made" id="made" method="post" class="form-control">
+<p>Включить все задачи <input type="checkbox" id="all" name="all" onchange="submit()" class="form-check-input"/></p>
+</br>
+</form>
+</p>
+</br>
+<div class="table">
+    <div class="tr">
+       <span class="td">
+          id
+    </span>
+        <span class="td">
+          decription
+    </span>
+        <span class="td">
+          created
+    </span>
+        <span class="td">
+          done
+    </span>
+    </div>
+</div>
+</body>
+</html>

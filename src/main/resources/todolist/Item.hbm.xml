@@ -1,0 +1,10 @@
+<hibernate-mapping>
+    <class name="todolist.Item" table="items">
+        <id column="id" name="id" type="java.lang.Integer">
+            <generator class="increment"/>
+        </id>
+        <property name="desc" column="descr" type="java.lang.String"/>
+        <property name="created" column="date" type="java.util.Date"/>
+        <property name="done" column="done" type="boolean"/>
+    </class>
+</hibernate-mapping>
