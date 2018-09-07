@@ -4,6 +4,7 @@ import DAO.ItemDAO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -25,13 +26,10 @@ public class CreateController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         JSONArray array = new JSONArray();
         JSONObject jsonSend = new JSONObject();
-        List<Item> items = new ArrayList<Item>();
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        items = session.createCriteria(Item.class).list();
-        session.close();
-        sessionFactory.close();
-        Iterator<Item> itemIterator = items.iterator();
+        Iterator<Item> itemIterator = itemDAO.func(session -> {
+            final Query query = session.createQuery("from Item");
+            return query.list();
+        }).iterator();
         while (itemIterator.hasNext()) {
             Item item = itemIterator.next();
             JSONObject object = new JSONObject();

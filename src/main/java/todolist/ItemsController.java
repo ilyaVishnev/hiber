@@ -35,13 +35,10 @@ public class ItemsController extends HttpServlet {
         } else {
             item.setDone(false);
         }
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        session.saveOrUpdate(item);
-        session.getTransaction().commit();
-        session.close();
-        sessionFactory.close();
+        itemDAO.func(session -> {
+            session.saveOrUpdate(item);
+            return item;
+        });
         doGet(req, resp);
     }
 }
