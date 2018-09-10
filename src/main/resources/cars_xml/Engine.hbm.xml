@@ -1,0 +1,12 @@
+<hibernate-mapping>
+    <class name="cars_xml.Engine" table="engine">
+        <id name="id" column="id">
+            <generator class="increment"></generator>
+        </id>
+        <property name="description" column="description" type="java.lang.String"/>
+        <set name="carList" table="cars" inverse="true">
+            <key column="id_en"></key>
+            <one-to-many class="cars_xml.Car"/>
+        </set>
+    </class>
+</hibernate-mapping>

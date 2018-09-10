@@ -6,5 +6,13 @@
         <property name="connection.password">pobeda</property>
         <property name="dialect">org.hibernate.dialect.PostgreSQL94Dialect</property>
         <mapping resource="todolist/Item.hbm.xml"/>
+        <mapping resource="cars_xml/Car.hbm.xml"/>
+        <mapping resource="cars_xml/CarBody.hbm.xml"/>
+        <mapping resource="cars_xml/Engine.hbm.xml"/>
+        <mapping resource="cars_xml/Gearbox.hbm.xml"/>
+        <mapping class="cars_annot.CarA"/>
+        <mapping class="cars_annot.CarBodyA"/>
+        <mapping class="cars_annot.EngineA"/>
+        <mapping class="cars_annot.GearboxA"/>
     </session-factory>
 </hibernate-configuration>
