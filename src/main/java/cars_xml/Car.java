@@ -2,36 +2,49 @@ package cars_xml;
 
 public class Car {
     private int id;
-    private String description;
-    private Gearbox gearbox;
-    private CarBody carBody;
+    private int price;
+    private HolderX holder;
+    private CarBody carbody;
     private Engine engine;
+    private Gearbox gearbox;
+    private String description;
+    private Boolean status;
+    private String photo;
+    private int year;
 
     public Car() {
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getDescription() {
-        return description;
+    public int getPrice() {
+        return price;
     }
 
-    public CarBody getCarBody() {
-        return carBody;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
-    public void setCarBody(CarBody carBody) {
-        this.carBody = carBody;
+    public HolderX getHolder() {
+        return holder;
+    }
+
+    public void setHolder(HolderX holder) {
+        this.holder = holder;
+    }
+
+    public CarBody getCarbody() {
+        return carbody;
+    }
+
+    public void setCarbody(CarBody carbody) {
+        this.carbody = carbody;
     }
 
     public Engine getEngine() {
@@ -50,9 +63,42 @@ public class Car {
         this.gearbox = gearbox;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
     @Override
     public String toString() {
-        return this.description + " - " + this.carBody + " - " + this.gearbox + " - " + this.engine;
+        return this.description + " " + this.getHolder().getId() + " " +
+                this.getGearbox().getId() + " " + this.getEngine().getId() + " " + this.getCarbody().getId();
     }
 
     @Override

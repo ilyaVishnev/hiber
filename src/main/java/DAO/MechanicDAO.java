@@ -1,35 +1,47 @@
 package DAO;
 
-import cars_annot.CarA;
-import cars_annot.CarBodyA;
-import cars_annot.EngineA;
-import cars_annot.GearboxA;
+import cars_annot.*;
 import cars_xml.Car;
 import cars_xml.CarBody;
 import cars_xml.Engine;
 import cars_xml.Gearbox;
-import org.hibernate.Hibernate;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
+import org.hibernate.service.ServiceRegistry;
 import todolist.Item;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.function.Function;
 import java.util.logging.Logger;
 
 public class MechanicDAO {
+    private static final MechanicDAO mechanicDAO = new MechanicDAO();
+    private static SessionFactory sessionFactory = buildSessionFactory();
+
+    private static SessionFactory buildSessionFactory() {
+        sessionFactory = new Configuration()
+                .configure()
+                .buildSessionFactory();
+        return sessionFactory;
+    }
+
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public static MechanicDAO getMechanicDAO() {
+        return mechanicDAO;
+    }
 
     private Logger logger = Logger.getLogger(MechanicDAO.class.getName());
 
     public <T> T func(final Function<Session, T> command) {
         T t = null;
-        SessionFactory sessionFactory = new Configuration()
-                .configure()
-                .buildSessionFactory();
-        Session session = sessionFactory.openSession();
+        Session session = getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             t = command.apply(session);
@@ -39,9 +51,18 @@ public class MechanicDAO {
         } finally {
             transaction.commit();
             session.close();
-            sessionFactory.close();
         }
         return t;
+    }
+
+    public Holder isCredential(String login, String password) {
+        return this.func(session -> {
+            Criteria userCriteria = session.createCriteria(Holder.class);
+            userCriteria.add(Restrictions.eq("login", login));
+            userCriteria.add(Restrictions.eq("password", password));
+            Holder holder = (Holder) userCriteria.uniqueResult();
+            return holder;
+        });
     }
 
     public <T> void saveEntyty(T t) {
@@ -101,7 +122,7 @@ public class MechanicDAO {
         mechanicDAO.saveEntyty(engineBMW);
         mechanicDAO.saveEntyty(bodyBMW);*/
 //annotations testing
-        CarA bmw1 = new CarA();
+      /*  CarA bmw1 = new CarA();
         bmw1.setDescription("BMW1");
         CarA bmw2 = new CarA();
         bmw2.setDescription("BMW2");
@@ -127,11 +148,11 @@ public class MechanicDAO {
         mechanicDAO.saveEntyty(bmw2);
         mechanicDAO.saveEntyty(gearboxBMW);
         mechanicDAO.saveEntyty(engineBMW);
-        mechanicDAO.saveEntyty(bodyBMW);
+        mechanicDAO.saveEntyty(bodyBMW);*/
         // System.out.println(bmw1);
-        bmw1.setDescription("Mercedes");
+        /*bmw1.setDescription("Mercedes");
         mechanicDAO.updateCar(bmw1);
         // System.out.println(bmw1);
-        mechanicDAO.deleteCar(bmw1);
+        mechanicDAO.deleteCar(bmw1);*/
     }
 }

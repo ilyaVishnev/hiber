@@ -1,7 +1,9 @@
 package cars_annot;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -10,7 +12,9 @@ public class EngineA {
 
     private int id;
     private String description;
-    private Set<CarA> carList = new HashSet<>();
+    private Model model;
+    private List<CarA> cars=new ArrayList<>();
+    private int year;
 
     public EngineA() {
     }
@@ -34,13 +38,32 @@ public class EngineA {
         this.description = description;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "engine")
-    public Set<CarA> getCarList() {
-        return carList;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_m",referencedColumnName = "id")
+    public Model getModel() {
+        return model;
     }
 
-    public void setCarList(Set<CarA> carList) {
-        this.carList = carList;
+    public void setModel(Model model) {
+        this.model = model;
+    }
+
+    @Column(name = "year")
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    @OneToMany( cascade = CascadeType.ALL,mappedBy = "engineA")
+    public List<CarA> getCars() {
+        return cars;
+    }
+
+    public void setCars(List<CarA> cars) {
+        this.cars = cars;
     }
 
     @Override

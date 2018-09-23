@@ -3,9 +3,15 @@
         <id column="id" name="id">
             <generator class="increment"/>
         </id>
-        <property name="description" column="name" type="java.lang.String"/>
-        <many-to-one name="carBody" column="id_cb" class="cars_xml.CarBody"/>
-        <many-to-one name="engine" column="id_en" class="cars_xml.Engine"/>
+        <property name="price" column="price" type="java.lang.Integer"/>
+        <many-to-one name="holder" column="id_holder" class="cars_xml.HolderX"/>
+        <many-to-one name="carbody" column="id_cb" class="cars_xml.CarBody"/>
         <many-to-one name="gearbox" column="id_box" class="cars_xml.Gearbox"/>
+        <many-to-one name="engine" column="id_en" class="cars_xml.Engine"/>
+        <property name="description" column="description" type="java.lang.String"/>
+        <property name="status" column="status" type="java.lang.Boolean"/>
+        <property name="photo" column="photo" type="java.lang.String"/>
+        <property name="year" column="year" type="java.lang.Integer"/>
+
     </class>
 </hibernate-mapping>

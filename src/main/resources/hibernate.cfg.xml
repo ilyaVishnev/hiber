@@ -5,14 +5,22 @@
         <property name="connection.username">postgres</property>
         <property name="connection.password">pobeda</property>
         <property name="dialect">org.hibernate.dialect.PostgreSQL94Dialect</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
         <mapping resource="todolist/Item.hbm.xml"/>
         <mapping resource="cars_xml/Car.hbm.xml"/>
         <mapping resource="cars_xml/CarBody.hbm.xml"/>
         <mapping resource="cars_xml/Engine.hbm.xml"/>
         <mapping resource="cars_xml/Gearbox.hbm.xml"/>
+        <mapping resource="cars_xml/Brand.hbm.xml"/>
+        <mapping resource="cars_xml/Model.hbm.xml"/>
+        <mapping resource="cars_xml/Holder.hbm.xml"/>
         <mapping class="cars_annot.CarA"/>
         <mapping class="cars_annot.CarBodyA"/>
         <mapping class="cars_annot.EngineA"/>
         <mapping class="cars_annot.GearboxA"/>
+        <mapping class="cars_annot.Model"/>
+        <mapping class="cars_annot.Brand"/>
+        <mapping class="cars_annot.Year"/>
+        <mapping class="cars_annot.Holder"/>
     </session-factory>
 </hibernate-configuration>

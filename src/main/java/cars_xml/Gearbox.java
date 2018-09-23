@@ -11,33 +11,51 @@ public class Gearbox {
 
     private int id;
     private String description;
-    private Set<Car> carList = new HashSet<>();
+    private ModelX model;
+    private Set<Car> cars = new HashSet<>();
+    private int year;
 
     public Gearbox() {
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public Set<Car> getCarList() {
-        return carList;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setCarList(Set<Car> carList) {
-        this.carList = carList;
+    public ModelX getModel() {
+        return model;
+    }
+
+    public void setModel(ModelX model) {
+        this.model = model;
+    }
+
+    public Set<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(Set<Car> cars) {
+        this.cars = cars;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 
     @Override

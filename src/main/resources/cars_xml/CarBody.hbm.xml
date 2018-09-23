@@ -4,9 +4,11 @@
             <generator class="increment"></generator>
         </id>
         <property name="description" column="description" type="java.lang.String"/>
-        <set name="carList" table="cars" inverse="true">
+        <set name="cars" table="cars" inverse="true">
             <key column="id_cb"></key>
             <one-to-many class="cars_xml.Car"/>
         </set>
+        <many-to-one name="model" column="id_m" class="cars_xml.ModelX"/>
+        <property name="year" column="year" type="java.lang.Integer"/>
     </class>
 </hibernate-mapping>
