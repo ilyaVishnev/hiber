@@ -56,7 +56,7 @@ public class CarBodyA {
         this.year = year;
     }
 
-    @OneToMany(mappedBy = "carBodyA")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "carBodyA")
     public List<CarA> getCars() {
         return cars;
     }
