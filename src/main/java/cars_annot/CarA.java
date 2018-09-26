@@ -1,12 +1,14 @@
 package cars_annot;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "cars")
 public class CarA {
     private int id;
     private int price;
+    private Timestamp date = new Timestamp(System.currentTimeMillis());
     private Holder holder;
     private CarBodyA carBodyA;
     private EngineA engineA;
@@ -122,6 +124,15 @@ public class CarA {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    @Column(name = "create_date")
+    public Timestamp getDate() {
+        return date;
+    }
+
+    public void setDate(Timestamp date) {
+        this.date = date;
     }
 
     @Override

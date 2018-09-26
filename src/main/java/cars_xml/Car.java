@@ -1,8 +1,11 @@
 package cars_xml;
 
+import java.sql.Timestamp;
+
 public class Car {
     private int id;
     private int price;
+    private Timestamp date = new Timestamp(System.currentTimeMillis());
     private HolderX holder;
     private CarBody carbody;
     private Engine engine;
@@ -45,6 +48,14 @@ public class Car {
 
     public void setCarbody(CarBody carbody) {
         this.carbody = carbody;
+    }
+
+    public Timestamp getDate() {
+        return date;
+    }
+
+    public void setDate(Timestamp date) {
+        this.date = date;
     }
 
     public Engine getEngine() {

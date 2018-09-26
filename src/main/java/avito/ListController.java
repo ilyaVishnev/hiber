@@ -42,6 +42,8 @@ public class ListController extends HttpServlet {
             jsonObject.put("price", car.getPrice());
             jsonObject.put("photo", car.getPhoto());
             jsonObject.put("status", car.getStatus());
+            jsonObject.put("date",2000+car.getDate().getYear()-100+" "+car.getDate().getMonth()+" "+(car.getDate().getDate()+1));
+            jsonObject.put("brand_id",car.getGearboxA().getModel().getBrand().getId());
             jsonArray.add(jsonObject);
         }
         send.put("array", jsonArray);

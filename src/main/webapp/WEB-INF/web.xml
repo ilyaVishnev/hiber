@@ -42,12 +42,20 @@
         <servlet-class>avito.CarsController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>FilterForList</servlet-name>
+        <servlet-class>avito.FilterForList</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>SignInController</servlet-name>
         <servlet-class>avito.SignInController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SignInController</servlet-name>
         <url-pattern>/sign</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FilterForList</servlet-name>
+        <url-pattern>/filterFlist</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>StatusController</servlet-name>

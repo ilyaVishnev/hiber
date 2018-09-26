@@ -12,6 +12,8 @@
     <style>
         DIV.table {
             display: table;
+            align-content: right;
+            width: 74%
         }
 
         FORM.tr, DIV.tr {
@@ -31,6 +33,35 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
+            var today;
+            var photo;
+            var id_brand;
+            $.ajax({
+                method: 'GET',
+                dataType: 'json',
+                url: '/filterFlist',
+                success: function (data) {
+                    var content = '<option value="-1" selected>Выберите марку</option>';
+                    var array = data.array;
+                    today = data.today;
+                    id_brand = data.id_brand;
+                    photo = data.havePhoto;
+                    if (today == 'on') {
+                        document.getElementById("today").checked = true;
+                    }
+                    if (photo == 'on') {
+                        document.getElementById("photo").checked = true;
+                    }
+                    array.forEach(function (brand, index, array) {
+                        if (id_brand == brand.id) {
+                            content += '<option value=\"' + brand.id + '\" selected>' + brand.brand + '</option>';
+                        } else {
+                            content += '<option value=\"' + brand.id + '\">' + brand.brand + '</option>';
+                        }
+                    });
+                    $('#brands').empty().html(content);
+                }
+            })
             $.ajax({
                 method: 'POST',
                 dataType: 'json',
@@ -51,14 +82,28 @@
                         "          Фото\n" +
                         "    </span>\n" +
                         "    </div>";
+                    var date = new Date();
+                    var compareDate = date.getFullYear() + " " + date.getMonth() + " " + date.getDate();
                     cars.forEach(function (car, index, cars) {
-                        content += "<form action=\"${pageContext.servletContext.contextPath}/desc\" method=\"POST\" class=\"tr\">" +
-                            "<span class=\"td\"><input type=\"text\" name=\"model\" value=\"" + car.model + "\" disabled /></span>" +
-                            "<span class=\"td\"><input type=\"text\" name=\"price\" value=\"" + car.price + "\" disabled /></span>" +
-                            "<span class=\"td\"><input type=\"text\" name=\"status\" value=\"" + car.status + "\" disabled /></span>" +
-                            "<span class=\"td\"><input type=\"image\" src=\"" + car.photo + "\" width=\"30%\" \n" +
-                            "   height=\"25%\"  alt=\"Submit Form\" /></span>" + "<input type=\"hidden\" name=\"car_id\" value=\"" +
-                            car.id + "\"/></form>";
+                        var filter = true;
+                        if (today == 'on') {
+                            filter = compareDate == car.date && filter;
+                        }
+                        if (photo == 'on') {
+                            filter = car.photo != "" && filter;
+                        }
+                        if (id_brand != "-1") {
+                            filter = id_brand == car.brand_id && filter;
+                        }
+                        if (filter) {
+                            content += "<form action=\"${pageContext.servletContext.contextPath}/desc\" method=\"POST\" class=\"tr\">" +
+                                "<span class=\"td\"><input type=\"text\" name=\"model\" value=\"" + car.model + "\" disabled /></span>" +
+                                "<span class=\"td\"><input type=\"text\" name=\"price\" value=\"" + car.price + "\" disabled /></span>" +
+                                "<span class=\"td\"><input type=\"text\" name=\"status\" value=\"" + car.status + "\" disabled /></span>" +
+                                "<span class=\"td\"><input type=\"image\" src=\"" + car.photo + "\" width=\"30%\" \n" +
+                                "   height=\"25%\"  alt=\"photo\" /></span>" + "<input type=\"hidden\" name=\"car_id\" value=\"" +
+                                car.id + "\"/></form>";
+                        }
                     })
                     $('#table').empty().html(content);
                 }
@@ -67,6 +112,13 @@
     </script>
 </head>
 <body>
+<div style="float: left; margin-top: 200px;margin-right: 10px">
+    <form action="${PageContext.servletContext.contextPath}/filterFlist" method="post">
+        <input type="checkbox" name="photo" id="photo" onchange="submit()">only photo<br>
+        <input type="checkbox" name="today" id="today" onchange="submit()">only today<br>
+        <select id="brands" name="brands" onchange="submit()"></select>
+    </form>
+</div>
 <div class="table" id="table">
 </div>
 </br>

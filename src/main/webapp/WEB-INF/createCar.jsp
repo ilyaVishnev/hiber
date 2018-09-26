@@ -130,7 +130,7 @@
             var data = {
                 empty: false
             };
-            var elem = $("#createForm").find('input, select').each(
+            var elem = $("#createForm").find('input:not(input.image), select').each(
                 function () {
                     if ($(this).val() == '' || $(this).val() == null) {
                         data.empty = true;
@@ -172,7 +172,7 @@
     </c:if>
     <br/>
     <p><img id="image" src="pictures/emptyPhoto.JPG" width="15%" height="15%"></p>
-    <input type="hidden" id="myimage" name="myimage">
+    <input type="hidden" id="myimage" name="myimage" class="image">
     <input type="submit" value="Добавить объявление" name="create" onclick="return checkEmptyPlaces();"
            class="btn btn-default">
 </form>

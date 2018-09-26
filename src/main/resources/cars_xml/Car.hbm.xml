@@ -4,6 +4,7 @@
             <generator class="increment"/>
         </id>
         <property name="price" column="price" type="java.lang.Integer"/>
+        <property name="date" column="create_date" type="java.util.Date"/>
         <many-to-one name="holder" column="id_holder" class="cars_xml.HolderX"/>
         <many-to-one name="carbody" column="id_cb" class="cars_xml.CarBody"/>
         <many-to-one name="gearbox" column="id_box" class="cars_xml.Gearbox"/>
@@ -12,6 +13,5 @@
         <property name="status" column="status" type="java.lang.Boolean"/>
         <property name="photo" column="photo" type="java.lang.String"/>
         <property name="year" column="year" type="java.lang.Integer"/>
-
     </class>
 </hibernate-mapping>
