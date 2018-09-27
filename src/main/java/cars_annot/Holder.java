@@ -51,4 +51,9 @@ public class Holder {
     public void setCars(List<CarA> cars) {
         this.cars = cars;
     }
+
+    @Override
+    public String toString() {
+        return this.getLogin() + " " + this.getPassword();
+    }
 }

@@ -1,0 +1,27 @@
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:hsqldb:mem:clinic;sql.enforce_size=false</property>
+        <property name="connection.driver_class">org.hsqldb.jdbc.JDBCDriver</property>
+        <property name="connection.username">sa</property>
+        <property name="connection.password"></property>
+        <property name="dialect">org.hibernate.dialect.HSQLDialect</property>
+        <property name="show_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
+        <mapping resource="todolist/Item.hbm.xml"/>
+        <mapping resource="cars_xml/Car.hbm.xml"/>
+        <mapping resource="cars_xml/CarBody.hbm.xml"/>
+        <mapping resource="cars_xml/Engine.hbm.xml"/>
+        <mapping resource="cars_xml/Gearbox.hbm.xml"/>
+        <mapping resource="cars_xml/Brand.hbm.xml"/>
+        <mapping resource="cars_xml/Model.hbm.xml"/>
+        <mapping resource="cars_xml/Holder.hbm.xml"/>
+        <mapping class="cars_annot.CarA"/>
+        <mapping class="cars_annot.CarBodyA"/>
+        <mapping class="cars_annot.EngineA"/>
+        <mapping class="cars_annot.GearboxA"/>
+        <mapping class="cars_annot.Model"/>
+        <mapping class="cars_annot.Brand"/>
+        <mapping class="cars_annot.Year"/>
+        <mapping class="cars_annot.Holder"/>
+    </session-factory>
+</hibernate-configuration>
