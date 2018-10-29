@@ -21,8 +21,8 @@ import java.util.logging.Logger;
 
 public class CreateController extends HttpServlet {
 
-    Logger logger = Logger.getLogger(CreateController.class.getName());
-    MechanicDAO mechanicDAO = MechanicDAO.getMechanicDAO();
+    final Logger logger = Logger.getLogger(CreateController.class.getName());
+    final MechanicDAO mechanicDAO = MechanicDAO.getMechanicDAO();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

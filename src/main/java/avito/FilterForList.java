@@ -17,10 +17,10 @@ import java.util.List;
 
 public class FilterForList extends HttpServlet {
 
-    String id_brand = "-1";
-    String havePhoto = "";
-    String today = "";
-    MechanicDAO mechanicDAO = MechanicDAO.getMechanicDAO();
+    private String idBrand = "-1";
+    private String havePhoto = "";
+    private String today = "";
+    private final MechanicDAO mechanicDAO = MechanicDAO.getMechanicDAO();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -37,7 +37,7 @@ public class FilterForList extends HttpServlet {
             jsonObject.put("brand", brand.getName());
             array.add(jsonObject);
         }
-        send.put("id_brand", id_brand);
+        send.put("idBrand", idBrand);
         send.put("havePhoto", havePhoto);
         send.put("today", today);
         send.put("array", array);
@@ -46,7 +46,7 @@ public class FilterForList extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        id_brand = req.getParameter("brands");
+        idBrand = req.getParameter("brands");
         havePhoto = req.getParameter("photo");
         today = req.getParameter("today");
         req.getRequestDispatcher("/WEB-INF/list.jsp").forward(req, resp);

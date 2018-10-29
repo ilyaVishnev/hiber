@@ -24,9 +24,9 @@ import java.util.logging.Logger;
 
 public class ImageController extends HttpServlet {
 
-    Logger logger = Logger.getLogger(ImageController.class.getName());
+    final Logger logger = Logger.getLogger(ImageController.class.getName());
     String fileway;
-    MechanicDAO mechanicDAO = MechanicDAO.getMechanicDAO();
+    final MechanicDAO mechanicDAO = MechanicDAO.getMechanicDAO();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

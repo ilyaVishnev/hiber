@@ -17,7 +17,7 @@ import java.util.List;
 
 public class CarsController extends HttpServlet {
 
-    MechanicDAO mechanicDAO = MechanicDAO.getMechanicDAO();
+    final MechanicDAO mechanicDAO = MechanicDAO.getMechanicDAO();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -51,7 +51,7 @@ public class CarsController extends HttpServlet {
             Model model = iterator1.next();
             jsonObj.put("id", model.getId());
             jsonObj.put("name", model.getName());
-            jsonObj.put("Id_brand", model.getBrand().getId());
+            jsonObj.put("IdBrand", model.getBrand().getId());
             modelArray.add(jsonObj);
         }
         jsonSend.put("modelArray", modelArray);
@@ -65,7 +65,7 @@ public class CarsController extends HttpServlet {
             GearboxA gearboxA = iterator2.next();
             jsonObj.put("id", gearboxA.getId());
             jsonObj.put("desc", gearboxA.getDescription());
-            jsonObj.put("Id_m", gearboxA.getModel().getId());
+            jsonObj.put("IdM", gearboxA.getModel().getId());
             jsonObj.put("year", gearboxA.getYear());
             gearboxArray.add(jsonObj);
         }
@@ -80,7 +80,7 @@ public class CarsController extends HttpServlet {
             EngineA engineA = iterator3.next();
             jsonObj.put("id", engineA.getId());
             jsonObj.put("desc", engineA.getDescription());
-            jsonObj.put("Id_m", engineA.getModel().getId());
+            jsonObj.put("IdM", engineA.getModel().getId());
             jsonObj.put("year", engineA.getYear());
             engineArray.add(jsonObj);
         }
@@ -95,7 +95,7 @@ public class CarsController extends HttpServlet {
             CarBodyA carBodyA = iterator4.next();
             jsonObj.put("id", carBodyA.getId());
             jsonObj.put("desc", carBodyA.getDescription());
-            jsonObj.put("Id_m", carBodyA.getModel().getId());
+            jsonObj.put("IdM", carBodyA.getModel().getId());
             jsonObj.put("year", carBodyA.getYear());
             carbodyArray.add(jsonObj);
         }

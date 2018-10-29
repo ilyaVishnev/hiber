@@ -61,7 +61,7 @@
                     var brandSel = document.getElementById('brand');
                     $('#brand').change(function () {
                         for (var i = 0; i < models.length; i++) {
-                            if (models[i].Id_brand == brandSel.options[brandSel.selectedIndex].value) {
+                            if (models[i].IdBrand == brandSel.options[brandSel.selectedIndex].value) {
                                 content += '<option value="' + models[i].id + '">' + models[i].name + '</option>';
                             }
                         }
@@ -105,21 +105,21 @@
         function fullFields(yearSel, modelSel, gearboxes, engines, carBodies) {
             var content = '';
             for (var i = 0; i < gearboxes.length; i++) {
-                if (gearboxes[i].Id_m == modelSel.options[modelSel.selectedIndex].value && gearboxes[i].year >= yearSel.options[yearSel.selectedIndex].value) {
+                if (gearboxes[i].IdM == modelSel.options[modelSel.selectedIndex].value && gearboxes[i].year >= yearSel.options[yearSel.selectedIndex].value) {
                     content += '<option value="' + gearboxes[i].id + '">' + gearboxes[i].desc + '</option>';
                 }
             }
             $('#gearbox').html(content);
             content = '';
             for (var i = 0; i < engines.length; i++) {
-                if (engines[i].Id_m == modelSel.options[modelSel.selectedIndex].value && engines[i].year >= yearSel.options[yearSel.selectedIndex].value) {
+                if (engines[i].IdM == modelSel.options[modelSel.selectedIndex].value && engines[i].year >= yearSel.options[yearSel.selectedIndex].value) {
                     content += '<option value="' + engines[i].id + '">' + engines[i].desc + '</option>';
                 }
             }
             $('#engine').html(content);
             content = '';
             for (var i = 0; i < carBodies.length; i++) {
-                if (carBodies[i].Id_m == modelSel.options[modelSel.selectedIndex].value && carBodies[i].year >= yearSel.options[yearSel.selectedIndex].value) {
+                if (carBodies[i].IdM == modelSel.options[modelSel.selectedIndex].value && carBodies[i].year >= yearSel.options[yearSel.selectedIndex].value) {
                     content += '<option value="' + carBodies[i].id + '">' + carBodies[i].desc + '</option>';
                 }
             }

@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class StatusController extends HttpServlet {
 
-    MechanicDAO mechanicDAO = MechanicDAO.getMechanicDAO();
+    final MechanicDAO mechanicDAO = MechanicDAO.getMechanicDAO();
     CarA car;
 
     @Override
@@ -24,7 +24,7 @@ public class StatusController extends HttpServlet {
         req.setAttribute("photo", car.getPhoto());
         req.setAttribute("price", car.getPrice());
         req.setAttribute("status", car.getStatus());
-        req.setAttribute("id_holder", car.getHolder().getId());
+        req.setAttribute("idHolder", car.getHolder().getId());
         req.setAttribute("id", car.getId());
         resp.setContentType("text/html");
         req.getRequestDispatcher("/WEB-INF/description.jsp").forward(req, resp);

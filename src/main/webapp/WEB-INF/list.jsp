@@ -13,7 +13,7 @@
         DIV.table {
             display: table;
             align-content: right;
-            width: 74%
+            width: 80%
         }
 
         FORM.tr, DIV.tr {
@@ -32,10 +32,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
+        var today;
+        var photo;
+        var id_brand;
+        var myFilter = {today: today, photo: photo, idBrand: id_brand};
         $(document).ready(function () {
-            var today;
-            var photo;
-            var id_brand;
             $.ajax({
                 method: 'GET',
                 dataType: 'json',
@@ -43,29 +44,32 @@
                 success: function (data) {
                     var content = '<option value="-1" selected>Выберите марку</option>';
                     var array = data.array;
-                    today = data.today;
-                    id_brand = data.id_brand;
-                    photo = data.havePhoto;
-                    if (today == 'on') {
+                    myFilter.today = data.today;
+                    myFilter.idBrand = data.idBrand;
+                    myFilter.photo = data.havePhoto;
+                    if (myFilter.today == 'on') {
                         document.getElementById("today").checked = true;
                     }
-                    if (photo == 'on') {
+                    if (myFilter.photo == 'on') {
                         document.getElementById("photo").checked = true;
                     }
                     array.forEach(function (brand, index, array) {
-                        if (id_brand == brand.id) {
+                        if (myFilter.idBrand == brand.id) {
                             content += '<option value=\"' + brand.id + '\" selected>' + brand.brand + '</option>';
                         } else {
                             content += '<option value=\"' + brand.id + '\">' + brand.brand + '</option>';
                         }
                     });
                     $('#brands').empty().html(content);
-                }
+                },
+                async: false,
             })
             $.ajax({
                 method: 'POST',
                 dataType: 'json',
                 url: '/list',
+                data: myFilter.idBrand + "," + myFilter.photo + "," + myFilter.today,
+                contentType: 'text',
                 success: function (data) {
                     var cars = data.array;
                     var content = " <div class=\"tr\">\n" +
@@ -86,15 +90,15 @@
                     var compareDate = date.getFullYear() + " " + date.getMonth() + " " + date.getDate();
                     cars.forEach(function (car, index, cars) {
                         var filter = true;
-                        if (today == 'on') {
-                            filter = compareDate == car.date && filter;
-                        }
-                        if (photo == 'on') {
-                            filter = car.photo != "" && filter;
-                        }
-                        if (id_brand != "-1") {
-                            filter = id_brand == car.brand_id && filter;
-                        }
+                        /*      if (today == 'on') {
+                                  filter = compareDate == car.date && filter;
+                              }
+                              if (photo == 'on') {
+                                  filter = car.photo != "" && filter;
+                              }
+                              if (id_brand != "-1") {
+                                  filter = id_brand == car.brandId && filter;
+                              }*/
                         if (filter) {
                             content += "<form action=\"${pageContext.servletContext.contextPath}/desc\" method=\"POST\" class=\"tr\">" +
                                 "<span class=\"td\"><input type=\"text\" name=\"model\" value=\"" + car.model + "\" disabled /></span>" +

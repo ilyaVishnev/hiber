@@ -20,14 +20,7 @@ import java.util.logging.Logger;
 
 public class MechanicDAO {
     private static final MechanicDAO mechanicDAO = new MechanicDAO();
-    private static SessionFactory sessionFactory = buildSessionFactory();
-
-    private static SessionFactory buildSessionFactory() {
-        sessionFactory = new Configuration()
-                .configure()
-                .buildSessionFactory();
-        return sessionFactory;
-    }
+    private static final SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
@@ -37,7 +30,7 @@ public class MechanicDAO {
         return mechanicDAO;
     }
 
-    private Logger logger = Logger.getLogger(MechanicDAO.class.getName());
+    private final Logger logger = Logger.getLogger(MechanicDAO.class.getName());
 
     public <T> T func(final Function<Session, T> command) {
         T t = null;

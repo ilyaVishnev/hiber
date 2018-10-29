@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class SignInController extends HttpServlet {
 
-    MechanicDAO mechanicDAO = MechanicDAO.getMechanicDAO();
+    final MechanicDAO mechanicDAO = MechanicDAO.getMechanicDAO();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

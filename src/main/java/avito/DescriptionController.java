@@ -12,8 +12,8 @@ import java.io.IOException;
 
 public class DescriptionController extends HttpServlet {
 
-    MechanicDAO mechanicDAO = MechanicDAO.getMechanicDAO();
-    CarA car;
+    final MechanicDAO mechanicDAO = MechanicDAO.getMechanicDAO();
+    private CarA car;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,7 +24,7 @@ public class DescriptionController extends HttpServlet {
         req.setAttribute("photo", car.getPhoto());
         req.setAttribute("price", car.getPrice());
         req.setAttribute("status", car.getStatus());
-        req.setAttribute("id_holder", car.getHolder().getId());
+        req.setAttribute("idHolder", car.getHolder().getId());
         req.setAttribute("id", car.getId());
         resp.setContentType("text/html");
         req.getRequestDispatcher("/WEB-INF/description.jsp").forward(req, resp);
@@ -34,7 +34,7 @@ public class DescriptionController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         car = mechanicDAO.func(session -> {
-            return session.get(CarA.class, Integer.parseInt(req.getParameter("car_id")));
+            return session.get(CarA.class, Integer.parseInt(req.getParameter("carId")));
         });
         doGet(req, resp);
     }
