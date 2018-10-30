@@ -17,9 +17,6 @@ import java.util.List;
 
 public class FilterForList extends HttpServlet {
 
-    private String idBrand = "-1";
-    private String havePhoto = "";
-    private String today = "";
     private final MechanicDAO mechanicDAO = MechanicDAO.getMechanicDAO();
 
     @Override
@@ -37,18 +34,18 @@ public class FilterForList extends HttpServlet {
             jsonObject.put("brand", brand.getName());
             array.add(jsonObject);
         }
-        send.put("idBrand", idBrand);
-        send.put("havePhoto", havePhoto);
-        send.put("today", today);
+        send.put("idBrand", mechanicDAO.getArray()[0]);
+        send.put("havePhoto", mechanicDAO.getArray()[1]);
+        send.put("today", mechanicDAO.getArray()[2]);
         send.put("array", array);
         resp.getWriter().println(send);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        idBrand = req.getParameter("brands");
-        havePhoto = req.getParameter("photo");
-        today = req.getParameter("today");
+        mechanicDAO.getArray()[0] = req.getParameter("brands");
+        mechanicDAO.getArray()[1] = req.getParameter("photo");
+        mechanicDAO.getArray()[2] = req.getParameter("today");
         req.getRequestDispatcher("/WEB-INF/list.jsp").forward(req, resp);
     }
 }

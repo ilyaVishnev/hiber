@@ -50,7 +50,7 @@ public class ListController extends HttpServlet {
         }
         String firstResult = "from CarA c";
         boolean firstFilter = true;
-        if (!map.get("idBrand").equals("-1")) {
+        if (!map.get("idBrand").equals("null")) {
             firstResult += firstFilter ? " where c.engineA.model.brand.id=" +
                     map.get("idBrand") : " and c.engineA.model.brand.id=" +
                     map.get("idBrand");

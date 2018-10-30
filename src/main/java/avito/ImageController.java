@@ -25,12 +25,12 @@ import java.util.logging.Logger;
 public class ImageController extends HttpServlet {
 
     final Logger logger = Logger.getLogger(ImageController.class.getName());
-    String fileway;
     final MechanicDAO mechanicDAO = MechanicDAO.getMechanicDAO();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         JSONObject object = new JSONObject();
+        String fileway = mechanicDAO.getArray()[0];
         fileway = "pictures/" + fileway.substring(fileway.lastIndexOf("\\") + 1);
         object.put("image", fileway);
         resp.getWriter().println(object);
@@ -56,7 +56,7 @@ public class ImageController extends HttpServlet {
             while (iterator.hasNext()) {
                 FileItem fileItem = (FileItem) iterator.next();
                 String fileName = fileItem.getName();
-                fileItem.write(new File(fileway = filePath +
+                fileItem.write(new File(mechanicDAO.getArray()[0] = filePath +
                         fileName.substring(fileName.lastIndexOf("\\") + 1)));
             }
         } catch (Exception ex) {

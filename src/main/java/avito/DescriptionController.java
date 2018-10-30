@@ -13,10 +13,12 @@ import java.io.IOException;
 public class DescriptionController extends HttpServlet {
 
     final MechanicDAO mechanicDAO = MechanicDAO.getMechanicDAO();
-    private CarA car;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        CarA car = mechanicDAO.func(session -> {
+            return session.get(CarA.class, Integer.parseInt(req.getParameter(mechanicDAO.getArray()[0])));
+        });
         req.setAttribute("desc", car.getDescription());
         req.setAttribute("carbody", car.getCarBodyA().getDescription());
         req.setAttribute("engine", car.getEngineA().getDescription());
@@ -33,9 +35,10 @@ public class DescriptionController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        car = mechanicDAO.func(session -> {
+       CarA car = mechanicDAO.func(session -> {
             return session.get(CarA.class, Integer.parseInt(req.getParameter("carId")));
         });
+       mechanicDAO.parametrs(req.getParameter("carId"));
         doGet(req, resp);
     }
 }

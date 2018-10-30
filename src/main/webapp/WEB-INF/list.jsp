@@ -42,7 +42,7 @@
                 dataType: 'json',
                 url: '/filterFlist',
                 success: function (data) {
-                    var content = '<option value="-1" selected>Выберите марку</option>';
+                    var content = '<option value="null" selected>Выберите марку</option>';
                     var array = data.array;
                     myFilter.today = data.today;
                     myFilter.idBrand = data.idBrand;
@@ -90,15 +90,6 @@
                     var compareDate = date.getFullYear() + " " + date.getMonth() + " " + date.getDate();
                     cars.forEach(function (car, index, cars) {
                         var filter = true;
-                        /*      if (today == 'on') {
-                                  filter = compareDate == car.date && filter;
-                              }
-                              if (photo == 'on') {
-                                  filter = car.photo != "" && filter;
-                              }
-                              if (id_brand != "-1") {
-                                  filter = id_brand == car.brandId && filter;
-                              }*/
                         if (filter) {
                             content += "<form action=\"${pageContext.servletContext.contextPath}/desc\" method=\"POST\" class=\"tr\">" +
                                 "<span class=\"td\"><input type=\"text\" name=\"model\" value=\"" + car.model + "\" disabled /></span>" +

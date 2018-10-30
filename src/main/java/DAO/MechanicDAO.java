@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 public class MechanicDAO {
     private static final MechanicDAO mechanicDAO = new MechanicDAO();
     private static final SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+    private final String[] array = new String[5];
 
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
@@ -77,5 +78,15 @@ public class MechanicDAO {
             session.saveOrUpdate(t);
             return t;
         });
+    }
+
+    public void parametrs(String... a) {
+        for (int index = 0; index < a.length; index++) {
+            array[index] = a[index];
+        }
+    }
+
+    public String[] getArray() {
+        return array;
     }
 }
