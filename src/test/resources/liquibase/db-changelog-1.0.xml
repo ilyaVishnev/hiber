@@ -1,0 +1,168 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Пользователь (generated)" id="1541215730647-1">
+        <createSequence sequenceName="gen_sequence"/>
+    </changeSet>
+    <changeSet author="Пользователь (generated)" id="1541215730647-2">
+        <createTable tableName="brand">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="brand_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Пользователь (generated)" id="1541215730647-3">
+        <createTable tableName="carbody">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="carbody_pkey"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="year" type="INTEGER"/>
+            <column name="id_m" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Пользователь (generated)" id="1541215730647-4">
+        <createTable tableName="cars">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="cars_pkey"/>
+            </column>
+            <column name="price" type="INTEGER"/>
+            <column name="create_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="description" type="TEXT"/>
+            <column name="id_holder" type="INTEGER"/>
+            <column name="id_en" type="INTEGER"/>
+            <column name="id_cb" type="INTEGER"/>
+            <column name="id_box" type="INTEGER"/>
+            <column name="photo" type="TEXT"/>
+            <column name="status" type="BOOLEAN"/>
+            <column name="year" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Пользователь (generated)" id="1541215730647-5">
+        <createTable tableName="cities">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="cities_pkey"/>
+            </column>
+            <column name="city" type="VARCHAR(45)"/>
+            <column name="contries_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Пользователь (generated)" id="1541215730647-6">
+        <createTable tableName="countries">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="countries_pkey"/>
+            </column>
+            <column name="country" type="VARCHAR(45)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Пользователь (generated)" id="1541215730647-7">
+        <createTable tableName="engine">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="engine_pkey"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="year" type="INTEGER"/>
+            <column name="id_m" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Пользователь (generated)" id="1541215730647-8">
+        <createTable tableName="gearbox">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="gearbox_pkey"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="year" type="INTEGER"/>
+            <column name="id_m" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Пользователь (generated)" id="1541215730647-9">
+        <createTable tableName="holders">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="holders_pkey"/>
+            </column>
+            <column name="login" type="VARCHAR(255)"/>
+            <column name="password" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Пользователь (generated)" id="1541215730647-10">
+        <createTable tableName="items">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="items_pkey"/>
+            </column>
+            <column name="descr" type="VARCHAR(255)"/>
+            <column name="date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="done" type="BOOLEAN"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Пользователь (generated)" id="1541215730647-11">
+        <createTable tableName="model">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="model_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="id_br" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Пользователь (generated)" id="1541215730647-12">
+        <createTable tableName="myuser">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="myuser_pkey"/>
+            </column>
+            <column name="role" type="VARCHAR(45)"/>
+            <column name="name" type="VARCHAR(45)"/>
+            <column name="login" type="VARCHAR(45)"/>
+            <column name="password" type="VARCHAR(45)"/>
+            <column name="email" type="VARCHAR(45)"/>
+            <column defaultValueComputed="CURRENT_DATE" name="createdate" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country" type="VARCHAR(45)"/>
+            <column name="city" type="VARCHAR(45)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Пользователь (generated)" id="1541215730647-13">
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="users_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Пользователь (generated)" id="1541215730647-14">
+        <createTable tableName="years">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="years_pkey"/>
+            </column>
+            <column name="year" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Пользователь (generated)" id="1541215730647-15">
+        <addForeignKeyConstraint baseColumnNames="id_cb" baseTableName="cars" constraintName="cars_id_cb_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="carbody"/>
+    </changeSet>
+    <changeSet author="Пользователь (generated)" id="1541215730647-16">
+        <addForeignKeyConstraint baseColumnNames="id_en" baseTableName="cars" constraintName="cars_id_en_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="engine"/>
+    </changeSet>
+    <changeSet author="Пользователь (generated)" id="1541215730647-17">
+        <addForeignKeyConstraint baseColumnNames="id_holder" baseTableName="cars" constraintName="cars_id_holder_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="holders"/>
+    </changeSet>
+    <changeSet author="Пользователь (generated)" id="1541215730647-18">
+        <addForeignKeyConstraint baseColumnNames="contries_id" baseTableName="cities" constraintName="f1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="countries"/>
+    </changeSet>
+    <changeSet author="Пользователь (generated)" id="1541215730647-19">
+        <addForeignKeyConstraint baseColumnNames="id_m" baseTableName="engine" constraintName="fk92b5lyhtjr4c9skeoiy0ixaui" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="model"/>
+    </changeSet>
+    <changeSet author="Пользователь (generated)" id="1541215730647-20">
+        <addForeignKeyConstraint baseColumnNames="id_m" baseTableName="gearbox" constraintName="fkcomf4wyanlve71v0bukom8cj6" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="model"/>
+    </changeSet>
+    <changeSet author="Пользователь (generated)" id="1541215730647-21">
+        <addForeignKeyConstraint baseColumnNames="id_box" baseTableName="cars" constraintName="fkpqa010mxwg2jx9tm6bx4mg5py" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="gearbox"/>
+    </changeSet>
+    <changeSet author="Пользователь (generated)" id="1541215730647-22">
+        <addForeignKeyConstraint baseColumnNames="id_m" baseTableName="carbody" constraintName="fkq21hby7g1wr5hl48qda02mm1t" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="model"/>
+    </changeSet>
+    <changeSet author="Пользователь (generated)" id="1541215730647-23">
+        <addForeignKeyConstraint baseColumnNames="id_br" baseTableName="model" constraintName="fkr72q9k2dipje24sbkv6sw7q9e" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="brand"/>
+    </changeSet>
+</databaseChangeLog>
